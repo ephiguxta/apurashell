@@ -32,13 +32,24 @@ get_data() {
       echo "$(( ++i )) - ${name}"
       echo "Total de Votos: ${total_votes}"
       echo -e "Porcentagem: ${percent}%\n"
+
     done
+
+    return 0
   fi
+
+  return 1
 }
 
 main() {
   test ! -d logs && mkdir logs
-  get_data
+
+  clear
+
+  while get_data; do
+    sleep 60s
+    clear
+  done
 }
 
 main "$@"
