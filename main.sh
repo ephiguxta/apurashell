@@ -7,7 +7,7 @@ get_json() {
 
   http_code=$(curl --write-out '%{http_code}' -s "$link" -o logs/data.json)
 
-  [[ "$http_code" -eq 200 ]] && return 0 || return 1
+  (( $http_code == 200 )) && return 0 || return 1
 }
 
 get_data() {
