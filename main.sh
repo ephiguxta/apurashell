@@ -12,13 +12,13 @@ get_json() {
 
 get_data() {
   if get_json; then
+    local file_path
+    file_path='logs/data.json'
+
     for i in {0..2}; do
       local name
       local -i total_votes
       local percent
-
-      local file_path
-      file_path='logs/data.json'
 
       name=$(jq ".ca[${i}].no" "$file_path");
       name=${name//\"/}
@@ -34,6 +34,13 @@ get_data() {
       echo -e "Porcentagem: ${percent}%\n"
 
     done
+
+    local votes_counted
+
+    votes_counted=$(jq '.sap' "$file_path")
+    votes_counted=${votes_counted//\"/}
+
+    echo "Votos Apurados: ${votes_counted}"
 
     return 0
   fi
