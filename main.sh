@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-link='https://stc.eleicoes2022.uol.com/2022/1turno/br/br-c1.json'
+link='https://stc.eleicoes2022.uol.com/2022/2turno/br/br-c1.json'
 
 get_json() {
   local -i http_code
@@ -15,7 +15,7 @@ get_data() {
     local file_path
     file_path='logs/data.json'
 
-    for i in {0..2}; do
+    for i in {0..1}; do
       local name
       local -i total_votes
       local percent
